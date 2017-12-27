@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<div align="center">
+		<table>
+			<form action="/suggest" method="get">
+				<table>
+					<tr>
+						<td><input type="text" name="text" /></td>
+						<td><input type="submit" value="Search" /></td>
+					</tr>
+				</table>
+			</form>
+			
+
+			<tr th:each="instance : ${data}">
+				<p>
+					<tr th:text="${instance.key}"></tr>
+					<tr th:text="${instance.value}"></tr>
+				</p>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

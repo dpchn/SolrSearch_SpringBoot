@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<div align="center">
+		<form action="/suggest" method="get">
+			<table>
+				<tr>
+					<td><input type="text" name="text" /></td>
+					<td><input type="submit" value="Search" /></td>
+				</tr>
+			</table>
+		</form>
+
+		<div th:if="${suggest}!=null">
+			Showing results for <a th:href="@{${correctWordUrl}}"><td
+				th:text="${suggest}"></td> </a>
+			<p>
+				Search instead for <a th:href="@{${wrongWordUrl}}"><td
+					th:text="${token}"></td></a>
+			</p>
+		</div>
+
+		<div th:if="${searchNotFound}!=null">
+			<table>
+				<tr>
+					<td>No Result Found for -
+						<h4 th:text="${token}" ></h4> <!-- - did not match any documents. -->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Suggestions:</p>
+						<p></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ul>
+							<li>Make sure that all words are spelled correctly.</li>
+							<li>Try different keywords.</li>
+							<li>Try more general keywords.</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			<table>
+				<tr th:each="map : ${data}">
+					<p>
+					<tr th:each="instance : ${map}">
+						<p>
+							<tr th:text="${instance.key}"></tr>
+							<tr th:text="${instance.value}"></tr>
+						</p>
+					</tr>
+				</p>
+				</tr>
+			</table>
+		</div>
+</div>
+</body>
+</html>
